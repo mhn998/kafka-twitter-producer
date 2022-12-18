@@ -1,4 +1,4 @@
-package org.twitter;
+package org.twitter.producer;
 
 public class TwitterConfig {
     public static final String API_KEY = "6rohWnIWYt9SnQl9BtMxkAxm7";

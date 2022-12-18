@@ -1,4 +1,4 @@
-package org.twitter;
+package org.twitter.producer;
 
 import com.twitter.clientlib.ApiClient;
 import com.twitter.clientlib.ApiException;

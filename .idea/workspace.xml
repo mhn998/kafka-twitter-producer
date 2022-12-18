@@ -5,14 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b5b0249a-f646-4014-ba49-59f2c1abb052" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/example/AppTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/twitter/RulesAdder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/twitter/producer/RulesAdder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/twitter/TwitterConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/twitter/producer/TwitterConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/twitter/TwitterProducer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/twitter/producer/TwitterProducer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/example/AppTest.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,6 +64,7 @@
       <recent name="$PROJECT_DIR$/src/main/java/org/twitter" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="org.twitter.consumer" />
       <recent name="org.twitter" />
     </key>
   </component>
@@ -94,7 +94,7 @@
       <module name="TwitterApi" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.twitter.*" />
+          <option name="PATTERN" value="org.twitter.producer.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -107,7 +107,7 @@
       <module name="TwitterApi" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.twitter.*" />
+          <option name="PATTERN" value="org.twitter.producer.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -116,11 +116,11 @@
       </method>
     </configuration>
     <configuration name="TwitterProducer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.twitter.TwitterProducer" />
+      <option name="MAIN_CLASS_NAME" value="org.twitter.producer.TwitterProducer" />
       <module name="TwitterApi" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.twitter.*" />
+          <option name="PATTERN" value="org.twitter.producer.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -147,7 +147,7 @@
       <updated>1671227393038</updated>
       <workItem from="1671227394296" duration="379000" />
       <workItem from="1671227790630" duration="2270000" />
-      <workItem from="1671230085879" duration="10948000" />
+      <workItem from="1671230085879" duration="21096000" />
     </task>
     <servers />
   </component>
