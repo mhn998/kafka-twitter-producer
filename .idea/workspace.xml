@@ -5,13 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b5b0249a-f646-4014-ba49-59f2c1abb052" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/twitter/RulesAdder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/twitter/producer/RulesAdder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/twitter/TwitterConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/twitter/producer/TwitterConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/twitter/TwitterProducer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/twitter/producer/TwitterProducer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/example/AppTest.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,19 +37,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/Users/mughrabi/MIU_Courses/BDT/TwitterApi",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.2"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/mughrabi/MIU_Courses/BDT/TwitterApi&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
@@ -147,7 +141,9 @@
       <updated>1671227393038</updated>
       <workItem from="1671227394296" duration="379000" />
       <workItem from="1671227790630" duration="2270000" />
-      <workItem from="1671230085879" duration="21096000" />
+      <workItem from="1671230085879" duration="22731000" />
+      <workItem from="1671339436450" duration="2251000" />
+      <workItem from="1671397813094" duration="1764000" />
     </task>
     <servers />
   </component>
