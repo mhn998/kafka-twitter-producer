@@ -1,53 +1,103 @@
 package org.twitter.producer;
 
-import com.twitter.clientlib.ApiClient;
 import com.twitter.clientlib.ApiException;
-import com.twitter.clientlib.Configuration;
-import com.twitter.clientlib.auth.*;
 import com.twitter.clientlib.model.*;
-import com.twitter.clientlib.TwitterCredentialsOAuth2;
 import com.twitter.clientlib.TwitterCredentialsBearer;
 import com.twitter.clientlib.api.TwitterApi;
 
-import com.twitter.clientlib.api.TweetsApi;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.time.OffsetDateTime;
 
 public class RulesAdder {
-  public static void main(String[] args) {
-    // Set the credentials based on the API's "security" tag values.
-    // Check the API definition in https://api.twitter.com/2/openapi.json
-    // When multiple options exist, the SDK supports only "OAuth2UserToken" or "BearerToken"
+	public static String[] WORLDCUP_RULE = {"(#worldcup OR #fifaworldcup OR fifa OR \"world cup\") has:geo", "worldcup related"};
 
-    // Uncomment and set the credentials configuration
-      
-    // Configure HTTP bearer authorization:
-     TwitterCredentialsBearer credentials = new TwitterCredentialsBearer("BEARER_TOKEN");
-        TwitterApi apiInstance = new TwitterApi(credentials);
+	public static void setRules(TwitterCredentialsBearer credentials) {
+		TwitterApi apiInstance = new TwitterApi(credentials);
 
-    // Set the params values
-    AddOrDeleteRulesRequest addOrDeleteRulesRequest = new AddOrDeleteRulesRequest(); // AddOrDeleteRulesRequest | type name = new type(arguments);
-    RuleNoId newRule = new RuleNoId();
-    newRule.value("cat has:media");
-    newRule.tag("cats with media");
-    AddRulesRequest addRuleRequest = new AddRulesRequest();
-    addRuleRequest.addAddItem(newRule);
-    addOrDeleteRulesRequest.setActualInstance(addRuleRequest);
-    Boolean dryRun = false; // Boolean | Dry Run can be used with both the add and delete action, with the expected result given, but without actually taking any action in the system (meaning the end state will always be as it was when the request was submitted). This is particularly useful to validate rule changes.
-    try {
-           AddOrDeleteRulesResponse result = apiInstance.tweets().addOrDeleteRules(addOrDeleteRulesRequest)
-            .dryRun(dryRun)
-            .execute();
-            System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling TweetsApi#addOrDeleteRules");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
+		AddOrDeleteRulesRequest addOrDeleteRulesRequest = new AddOrDeleteRulesRequest();
+		AddRulesRequest addRuleRequest = new AddRulesRequest();
+
+		RuleNoId ruleOne = new RuleNoId();
+		ruleOne.value(WORLDCUP_RULE[0]);
+		ruleOne.tag(WORLDCUP_RULE[1]);
+
+		addRuleRequest.addAddItem(ruleOne);
+		// addRuleRequest.addAddItem(Configs.RULE_TWO.getRuleNoId());
+		// addRuleRequest.addAddItem(Configs.RULE_THREE.getRuleNoId());
+		// addRuleRequest.addAddItem(Configs.RULE_FOUR.getRuleNoId());
+		// addRuleRequest.addAddItem(Configs.RULE_FIVE.getRuleNoId());
+
+		addOrDeleteRulesRequest.setActualInstance(addRuleRequest);
+		Boolean dryRun = false;
+
+		try {
+			AddOrDeleteRulesResponse result = apiInstance.tweets()
+					.addOrDeleteRules(addOrDeleteRulesRequest).dryRun(dryRun)
+					.execute();
+			System.out.println(result);
+		} catch (ApiException e) {
+			System.err.println("Exception when calling TweetsApi#addOrDeleteRules");
+			System.err.println("Status code: " + e.getCode());
+			System.err.println("Reason: " + e.getResponseBody());
+			System.err.println("Response headers: " + e.getResponseHeaders());
+			e.printStackTrace();
+		}
+	}
+
+	public static void deleteRules(TwitterCredentialsBearer credentials) {
+		TwitterApi apiInstance = new TwitterApi(credentials);
+		RulesLookupResponse result;
+		List<String> ids = new ArrayList<>();
+
+		try {
+			result = apiInstance.tweets().getRules().execute();
+
+			if(result.getData() == null) {
+				System.out.println("No Rules to delete!");
+				return;
+			}
+
+			for (Rule rule : result.getData()) {
+				ids.add(rule.getId());
+			}
+
+			System.out.println(result);
+		} catch (ApiException e) {
+			System.err.println("Exception when calling TweetsApi#getRules");
+			System.err.println("Status code: " + e.getCode());
+			System.err.println("Reason: " + e.getResponseBody());
+			System.err.println("Response headers: " + e.getResponseHeaders());
+			e.printStackTrace();
+		}
+
+		AddOrDeleteRulesRequest addOrDeleteRulesRequest = new AddOrDeleteRulesRequest();
+		DeleteRulesRequest deleteRulesRequest = new DeleteRulesRequest();
+		DeleteRulesRequestDelete deleteRules = new DeleteRulesRequestDelete();
+
+		deleteRules.ids(ids);
+		deleteRulesRequest.delete(deleteRules);
+
+		addOrDeleteRulesRequest.setActualInstance(deleteRulesRequest);
+		Boolean dryRun = false;
+
+		try {
+			AddOrDeleteRulesResponse deleteReuslt = apiInstance.tweets()
+					.addOrDeleteRules(addOrDeleteRulesRequest).dryRun(dryRun)
+					.execute();
+			System.out.println(deleteReuslt);
+		} catch (ApiException e) {
+			System.err.println("Exception when calling TweetsApi#deleteRules");
+			System.err.println("Status code: " + e.getCode());
+			System.err.println("Reason: " + e.getResponseBody());
+			System.err.println("Response headers: " + e.getResponseHeaders());
+			e.printStackTrace();
+		}
+	}
+
+	public static void main(String[] args) {
+		TwitterCredentialsBearer credentials = new TwitterCredentialsBearer(TwitterConfig.BEARER_TOKEN);
+
+		setRules(credentials);
+//		deleteRules(credentials);
+	}
 }
