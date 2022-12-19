@@ -14,7 +14,10 @@ import com.google.common.reflect.TypeToken;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.lang.reflect.Type;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Properties;
+import java.util.Set;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.TimeUnit;
@@ -49,27 +52,34 @@ public class TwitterProducer {
 		TwitterApi apiInstance = new TwitterApi(credentials);
 
 		BlockingQueue<String> queue = new LinkedBlockingDeque<>(50000);
+		
+		Set<String> tweetFields = new HashSet<>(Arrays.asList("created_at",
+				"conversation_id", "public_metrics", "source", "lang"));
+		Set<String> expansions = new HashSet<>(Arrays.asList("author_id", "geo.place_id"));
+		Set<String> placeFields = new HashSet<>(Arrays.asList("contained_within", "country", "country_code", "geo", "name", "place_type"));
+		
 		try {
-			InputStream result = apiInstance.tweets().sampleStream()
+			InputStream result = apiInstance.tweets().searchStream()
+					.tweetFields(tweetFields)
+					.expansions(expansions)
+					.placeFields(placeFields)
 					.execute();
 			try {
-				JSON json = new JSON();
-				Type localVarReturnType = new TypeToken<StreamingTweetResponse>() {
-				}.getType();
 				BufferedReader reader = new BufferedReader(
 						new InputStreamReader(result));
 				String line = reader.readLine();
 				Producer<Long, String> producer = getProducer();
 				
 				while (line != null) {
-					TimeUnit.SECONDS.sleep(5);
-					System.out.println(json.getGson()
-							.fromJson(line, localVarReturnType).toString());
-					line = reader.readLine();
-					System.out.println(line);
-					ProducerRecord<Long, String> message = new ProducerRecord<>(TOPIC_NAME, line);
-					producer.send(message);
-
+					try {
+						line = reader.readLine();
+						System.out.println(line);
+						ProducerRecord<Long, String> message = new ProducerRecord<>(TOPIC_NAME, line);
+						producer.send(message);
+					} catch (NullPointerException e) {
+						System.out.println("Null tweet detected");
+						line = reader.readLine();
+					}
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
